@@ -1,0 +1,51 @@
+object Hello extends App{
+
+  //klassen creëren in Scala, variabelen en constanten:
+  case class Student(var rollno: Int = 1, var geslacht: String = "man", var marks: Int = 2) {
+    var later_veranderbaar = 9
+    val later_niet_veranderbaar = 10
+
+    def functie() = print("Dit is een functie")
+    def >(s2: Student): Boolean = marks > s2.marks
+    def IsGoedKoppel(s2: Student): Boolean = geslacht.equals(s2.geslacht)
+  }
+
+  var Jim_Hulleman = Student(marks = 90)
+  var Lionel_Messi = Student(3, marks = 35)
+  println(Jim_Hulleman.>(Lionel_Messi))
+  println(Jim_Hulleman.IsGoedKoppel(Lionel_Messi))
+
+
+  //voorbeelden van geldige lijsten, bewerkingen ervan:
+  var nums = List(4,6,3,4)
+  var iets = List(1,2,true,"varken")//werkt gewoon
+  var students = List(Student(1,"man",8), Student(2,"vrouw", 9), Student(3,"onzijdig", 101))
+  var toppers = students.filter(st => st.marks>=60)
+
+  println(toppers)
+  println(nums.tail.tail) //tail betekent laat alles behalve het eerste element zien, 'head' betekent laat de eerste zien
+  println(nums.drop(2).take(2)) //drop betekent verwijder de eerste zoveel, take betekent laat de eerste zoveel zien
+  println(nums.reverse) //laat de lijst andersom afspelen
+  //'nums drop 2 take 3' (dus zonder punten) is ook goed
+
+  //for loops:
+  for(n<- nums){
+    println("blabla")
+    println(n)
+  }
+
+  nums.foreach{i:Int => println(i)}
+
+//met part_1 pak je van (x,y) alleen x
+  val part = (1,2)
+  println(part._1)
+
+  val (part1, part2) = (3,4)
+  println(part1)
+
+
+
+}
+
+
+
