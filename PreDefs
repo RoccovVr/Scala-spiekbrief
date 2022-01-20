@@ -1,0 +1,20 @@
+import scala.collection.mutable.ListBuffer
+import scala.util.control.Breaks.{break, breakable}
+
+object PreDefs {
+
+// vervangt eerstvolgend element el1 in lijst naar el2
+  def replace(lijst : ListBuffer[String], el1 : String, el2 : String): Unit ={
+    var i : Int = 0
+    breakable {
+      while(true) {
+        if (lijst(i) != el1) {
+          i += 1
+        } else {
+          break
+        }
+      }
+    }
+    lijst(i) = el2
+  }
+}
