@@ -1,0 +1,68 @@
+import scala.io.StdIn.readLine
+
+object Gebruiker {
+
+  //gebruiker krijgt vraag
+  def start(): Unit = {
+    println("A toevoegen, B verwijderen, C bewerken?")
+    reactieABCpre()
+  }
+
+  //reactie op (on)geldig antwoord:
+  def reactieABCpre(): Unit = {
+
+    //pas doorgaan als je een geldig antwoord geeft:
+    val geldigeAntwoorden = List("A", "B", "C")
+    var gekozenABC = readLine()
+    while (!geldigeAntwoorden.contains(gekozenABC)) {
+      println("geef geldig antwoord")
+      gekozenABC = readLine()
+    }
+    reactieInputABC(gekozenABC)
+  }
+
+  //reactie bij geldig antwoord:
+  def reactieInputABC(gekozenABC: String): Unit = {
+    gekozenABC match {
+      case "A" => reactieA()
+      case "B" => reactieB()
+      case "C" => reactieC()
+    }
+    andersNogIets()
+  }
+
+  //reactie op antwoord A:
+  def reactieA(): Unit = {
+    println("Wat wil je toevoegen?")
+    val toevoeging = readLine()
+    BoodschappenLijst.toevoegen(toevoeging)
+    BoodschappenLijst.tonen()
+  }
+
+  def reactieB(): Unit = {
+    println("Wat wil je verwijderen?")
+    val verwijdering = readLine()
+    BoodschappenLijst.verwijderen(verwijdering)
+    BoodschappenLijst.tonen()
+  }
+
+  def reactieC(): Unit = {
+    println("Wat wil je bewerken?")
+    val bewerking = readLine()
+    println("Wat wil je in de plaats?")
+    val nieuw = readLine()
+    BoodschappenLijst.bewerken(bewerking, nieuw)
+    BoodschappenLijst.tonen()
+  }
+
+  def andersNogIets(): Unit = {
+    println("anders nog iets? typ dan \' j \' ")
+    val klaar = readLine()
+    if (klaar == "j") {
+      start()
+    } else {
+      println("je eindlijst is:")
+      BoodschappenLijst.tonen()
+    }
+  }
+}
