@@ -1,0 +1,58 @@
+import java.io._
+import PreDefs._
+
+import scala.Array.ofDim
+//import scala.collection.mutable.Set
+import scala.io.Source
+import scala.collection.mutable.ListBuffer
+import scala.io.StdIn.readLine
+
+
+
+object BoodschappenLijst {
+
+  //inhoud:
+  var boodschappen = new ListBuffer[String]()
+
+
+  //inhoud tonen:
+  def tonen() : Unit = {
+    for (boodschap <- boodschappen){
+      println(boodschap)
+    }
+  }
+
+  //inhoud toevoegen:
+  def toevoegen(boodschap : String) : Unit = {
+    if (! boodschappen.contains(boodschap)){
+      boodschappen += boodschap
+    }
+    else{
+      println("Die stond er al in")
+    }
+  }
+
+  //inhoud verwijderen:
+  def verwijderen(boodschap : String) : Unit = {
+    if ( boodschappen.contains(boodschap)) {
+      boodschappen -= boodschap
+    }
+    else{
+      println("Die stond niet in de lijst")
+    }
+  }
+
+  //inhoud bewerken:
+  def bewerken(boodschap1 : String, boodschap2 : String) : Unit = {
+    if (boodschappen.contains(boodschap1)){
+      PreDefs.replace(boodschappen, boodschap1, boodschap2)
+    }
+    else{
+      println("Niks bewerkt")
+    }
+  }
+
+  def main(args:Array[String]): Unit ={
+    Gebruiker.start()
+  }
+}
